@@ -1,0 +1,26 @@
+LESSON 2:
+
+configuring npm
+  -npm init
+
+-Package.json is a configuration for npm 
+Bundlers:
+ -webpack(large resources that needs to be bundled)
+ -parcel(easy configuration)
+ -vite
+
+Dependencies:
+ -dev dependecy(during development)  (npm install -d parcel)
+ -normal dependencya(also used in production)
+
+ caret(^) and tilde(~)
+   ^ - only upgrades to small updates
+   ~ - even upgrades to large updates
+
+Package.json and Package-lock.json
+ -Package.json is a approx version of dependency
+ -Package-lock.json is a exact version of dependency
+
+Transative dependecy - Each dependency will have their own dependencies
+
+Node modules - collections of all the dependencies
