@@ -24,3 +24,22 @@ Package.json and Package-lock.json
 Transative dependecy - Each dependency will have their own dependencies
 
 Node modules - collections of all the dependencies
+
+
+# Parcel 
+  -Dev build 
+  -Local Server 
+  -HMR = Hot module Replacement
+  -File watching Algo-written in c++
+  -Caching - Faster Build 
+  - Image Optimisation 
+  -Minification 
+  -Bundling 
+  -Compress
+  -Consistent Hashing 
+  -Code Splitting 
+  -Differential Bundling - supports older browsers 
+  -Diagonostic for easy error handling 
+  -HTTPs 
+  -Tree shaking - remove less used code 
+  -Different dev and prod bundles
