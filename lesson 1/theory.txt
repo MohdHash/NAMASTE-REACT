@@ -43,3 +43,20 @@ Node modules - collections of all the dependencies
   -HTTPs 
   -Tree shaking - remove less used code 
   -Different dev and prod bundles
+
+
+Dev build :
+
+ -Package.json - "scripts":{
+    "start":"parcel filename.html",
+    "build":"parcel build filename.html"
+ }
+
+ Babel :
+  -responsible for transpiling jsx code to js engine
+
+Component-(class Component and functional Component)
+
+functional Component - a function that returns some jsx (react element)
+                     - First Letter Is a Capital Letter
+                     - rendering a component - root.render(<HeaderComponent />)

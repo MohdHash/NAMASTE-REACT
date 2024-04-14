@@ -1,28 +1,34 @@
-//nexted html elements
-/*
-<div id="parent">
-    <div id ="child">
-        <h1></h1>
-    </div>
 
-</div>
-*/
+import React from 'react';
 
-const parent = React.createElement("div",{id:"parent"},
-    [React.createElement("div",{id:"child"},
-        [React.createElement("h1",{},"im an h1 tag"),
-        React.createElement("h2",{},"im an h2 tag")]
+import ReactDOM from "react-dom/client";
 
-    ),React.createElement("div",{id:"child"},
-        [React.createElement("h1",{},"im an h1 tag"),
-        React.createElement("h2",{},"im an h2 tag")]
+// React Element => Object
 
-    )]
+
+
+// JSX => React.createElement => ReactElement - JS object => HTMLelement(render)
+// React element
+// const jsxheading = <h1 id='heading'>HashimFazeela </h1>;
+
+//React componSent 
+//class based component (old)
+// functional components (new)
+const Small = () => (
+   <h1>
+    Namaste React
+   </h1>
 );
 
-// const heading = React.createElement("h1",{id:"heading"},"hello world from react");
+//component composition
+const HeadingComponent = () => (
+    <div id="container">
+        <Small />  
+        <h1 id="heading">HashimFazeela</h1>
+    </div>
+);
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<HeadingComponent />);
 
-
-console.log(parent);  // returns an object 
-root.render(parent); // take the object and convert into h1 tag and render it to the root.
