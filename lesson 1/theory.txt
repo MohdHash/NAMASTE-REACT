@@ -60,3 +60,21 @@ Component-(class Component and functional Component)
 functional Component - a function that returns some jsx (react element)
                      - First Letter Is a Capital Letter
                      - rendering a component - root.render(<HeaderComponent />)
+
+LESSON 4 : 
+Food ordering app 
+  -Header 
+    -Logo
+    -Navigation Links (Home,About,cart)
+  -Body
+    -search Bar 
+    -restaurant cards 
+      -img 
+      -title 
+      -star rating 
+      -cuisine 
+      -price
+  -Footer
+    -copyright
+    -links
+
