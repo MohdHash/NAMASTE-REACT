@@ -78,3 +78,6 @@ Food ordering app
     -copyright
     -links
 
+
+Props => They are arguments that you pass into functional component
+
