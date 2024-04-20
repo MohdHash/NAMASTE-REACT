@@ -81,3 +81,21 @@ Food ordering app
 
 Props => They are arguments that you pass into functional component
 
+LEESON 4:
+-preferred to keep the app.js file in src folder 
+- create a new component folder and keep all the component files separately
+- first need to export the file and then need to import 
+- keep a utils folder to keep all the hard-coded data , CDN LINKs that must be shared across all the components in the app 
+
+default export - if u want to export only one thing 
+named export - when u want to have multiple export 
+
+-default export/import:
+
+export default Component
+import Component from "Path";
+
+-named export/import:
+
+export const component;
+import {component} from "Path";
