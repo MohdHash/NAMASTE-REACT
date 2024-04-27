@@ -81,7 +81,7 @@ Food ordering app
 
 Props => They are arguments that you pass into functional component
 
-LEESON 4:
+#LESSON 4:
 -preferred to keep the app.js file in src folder 
 - create a new component folder and keep all the component files separately
 - first need to export the file and then need to import 
@@ -99,3 +99,14 @@ import Component from "Path";
 
 export const component;
 import {component} from "Path";
+
+
+REACT HOOKS 
+  -normal JS utility functions 
+  -useState() - super powerful state variables in react
+  -useEffect()
+
+useState - hook :
+  -whenever a state variable updates , react rerenders the page
+
+  const [var,setVar] = useState([default data]);
