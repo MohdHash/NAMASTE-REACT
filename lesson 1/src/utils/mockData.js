@@ -1127,4 +1127,4 @@ const resList = [
 
 
 
-export default resList;
+export default resList; //default export

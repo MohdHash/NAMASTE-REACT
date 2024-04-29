@@ -110,3 +110,63 @@ useState - hook :
   -whenever a state variable updates , react rerenders the page
 
   const [var,setVar] = useState([default data]);
+
+Reconciliation Algo
+virtual DOM - actual representation of actual DOM 
+diff Algo - will find out the difference between OLD VIRTUAL DOM and NEW VIRTUAL DOM.
+          - will update the DOM and renders it. 
+          - in REACT 16.
+          - this algo is known as REACT fiber.
+
+LESSON 6:(LET'S EXPLORE THE WORLD)
+
+MONOLITHIC AND MICROSERVICE ARCHITECTURE:
+
+MONOLITHIC:
+   -Every small code is placed under the same big project
+   -So you have to deploy the project everytime you do any small changes
+
+MICROSERVICES:
+   -All different small thing had different services
+   -Separation of concern and single responsiblity principle
+   -These different services communicate with each other 
+   - Each services can have their own tech stack and language
+   -On different ports, different services are deployed.
+   -All the ports can be mapped to domain name
+   
+
+FETCHING DATA FROM BACKEND:
+  - On load -> API call -> render the UI 
+  - On load -> render UI -> API call -> rerender UI (better approach and UX)
+
+HOOK - normal JS utility functions 
+  -useEffect hook
+    -To execute a callback function after rendering the component
+    -takes 2 arguments,
+      1.callback function
+      2.dependecy array
+
+SYNTAX:
+useEffect(()=>{
+    fetchData();
+}, []);
+
+const fetchData = async ()={
+  const data = await fetch('url');
+
+  const json = await data.json();
+  setlistOfRestaurant();
+}
+
+OPTIONAL CHAINING:
+  -when you are not sure if the property exist in a nested object
+  -  instead of using => json.data ? json.data.cards : undefined
+  -  use json.data?.cards
+
+SHIMMER UI:
+  -shimmer UI is a kind of user interface that mimics the shades or the forms of content that will ultimately appear on the screen
+
+useState hook - when the local state variable changes , react will rerender the component
+              - That's why you are able to see that const state variable changes because it's essentially
+                a new variable when it rerenders.
+
