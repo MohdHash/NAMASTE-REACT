@@ -169,4 +169,5 @@ SHIMMER UI:
 useState hook - when the local state variable changes , react will rerender the component
               - That's why you are able to see that const state variable changes because it's essentially
                 a new variable when it rerenders.
+              - whenever a local state variable updates , react triggers a Reconciliation cycle.
 

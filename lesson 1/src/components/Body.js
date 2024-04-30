@@ -1,6 +1,5 @@
 import RestaurantCard from "./RestaurantCard";
 
-import resList from "../utils/mockData";
 import { useState ,useEffect} from "react";
 import Shimmer from "./Shimmer";
 
@@ -8,7 +7,9 @@ const Body = ()=>{
     //  Local State variable 
     const [restaurantList , setRestaurantList] = useState([]);
 
-    
+    const[searchText,setSearchText] = useState("")
+
+    const[copyResList , setCopyResList] = useState([]);
 
     useEffect(()=>{
       fetchData();
@@ -25,18 +26,38 @@ const Body = ()=>{
 
       console.log(json);
       //optional chaining
-     setRestaurantList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+      setRestaurantList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setCopyResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
-  //conditional Rendering
-    if(restaurantList.length === 0){
-    }
 
-    
-
-    return restaurantList.length === 0 ? <Shimmer /> : (
+    //conditional rendering
+    return copyResList.length === 0 ? <Shimmer /> : (
         <div className='body-container'>
             <div className='body-head'>
                 <div className="filter">
+                  <div className="search">
+                    <input 
+                      type="text" 
+                      className="search-box" 
+                      value={searchText} 
+                      onChange={ (e)=>{
+                      setSearchText(e.target.value);
+                    }} 
+                    />
+
+                    <button 
+                      className="search-btn" 
+                      onClick={()=>{
+                        const filteredList = restaurantList.filter((res)=>{
+                          return res.info.name.toLowerCase().includes(searchText.toLowerCase());
+                        })
+
+                        setCopyResList(filteredList)
+                      }}
+                    >
+                      Search
+                    </button>
+                  </div>
                     <button className="filter-btn" 
                     onClick={()=>{
                         const filteredList = restaurantList.filter(
@@ -44,13 +65,13 @@ const Body = ()=>{
                                 return res.info.avgRating > 4.3;
                             }
                         );
-                        setRestaurantList(filteredList);
+                        setCopyResList(filteredList);
                     }}>Top Rated</button>
                 </div>
             </div>
             <div className='res-container'>
                 {
-                  restaurantList.map((restaurant) =>(
+                  copyResList.map((restaurant) =>(
                     <RestaurantCard key={restaurant.info.id} resData ={restaurant} />
                   ))
                 }

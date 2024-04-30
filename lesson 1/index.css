@@ -112,6 +112,16 @@
     flex-wrap: wrap;
 }
 
+.filter{
+    display: flex;
+}
+
+.search{
+    margin: 10px;
+}
+
+
+
 
 
 
