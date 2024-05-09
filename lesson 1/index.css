@@ -53,6 +53,7 @@
 
 .res-card{
     width: 200px;
+    height: 400px;
     padding: 5px;
     border-radius: 10px;
     background-color: bisque;
@@ -79,6 +80,8 @@
     margin-top: 3px;
 }
 
+
+
 .res-card:hover{
     transform: scale(0.97);
 }
@@ -87,6 +90,11 @@
     display: flex;
     flex-wrap: wrap;
     margin-left: 55px;
+}
+
+.res-container a{
+    text-decoration: none;
+    color:  black;
 }
 
 .body-head{

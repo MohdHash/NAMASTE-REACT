@@ -171,3 +171,36 @@ useState hook - when the local state variable changes , react will rerender the 
                 a new variable when it rerenders.
               - whenever a local state variable updates , react triggers a Reconciliation cycle.
 
+EPISODE 7: LETS FIND THE PATH:
+
+useEffect Hook:
+  -will be called evertime you render the component 
+  - arguments - a callback function, and a dependecy array.
+  -callback function is mandatory
+  -if no dependecy array, useEffect is called on every component render
+
+  -case 1: If the dependecy array is EMPTY:
+            - useEffect is called in the initial render and only once
+  -case 2: If dependecy array is NOT empty . eg.[btnName].
+            - everytime btnName changes , useEffect is called
+  
+
+  NEVER USE USESTATE HOOK OUTSIDE THE COMPONENT- USED TO CREATE LOCAL STATE VARIABLE
+                                                - always create at the top of the component.
+                                                -never create use useState in side a conditional statement(if statement).
+
+install react-router-dom
+import {createBrowserRouter,RouterProvider} from "react-router-dom" //named import
+
+const appRouter = createBrowserRouter([  // Array of objects as argumet in the function
+  {
+    path:"/",
+    element:<Body />,
+    errorElement: <Error />,
+  },
+  {
+
+  }
+])
+
+

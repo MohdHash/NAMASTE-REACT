@@ -1,7 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
-
+import { Link } from "react-router-dom";
 import { useState ,useEffect} from "react";
 import Shimmer from "./Shimmer";
+
+
 
 const Body = ()=>{
     //  Local State variable 
@@ -16,7 +18,7 @@ const Body = ()=>{
     }, []);
 
     
-
+    
     const fetchData = async ()=>{
       const data = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.9625741&lng=79.8394783&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -72,8 +74,10 @@ const Body = ()=>{
             <div className='res-container'>
                 {
                   copyResList.map((restaurant) =>(
-                    <RestaurantCard key={restaurant.info.id} resData ={restaurant} />
+                   <Link to={"/restaurants/"+restaurant.info.id} key={restaurant.info.id} >
+                    <RestaurantCard  resData ={restaurant} /></Link> 
                   ))
+
                 }
             </div>
         </div>
