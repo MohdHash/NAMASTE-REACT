@@ -204,3 +204,106 @@ const appRouter = createBrowserRouter([  // Array of objects as argumet in the f
 ])
 
 
+
+**** LESSON 8: ****
+
+class based components:
+
+class UserClass extends React.component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      count:0,
+    }
+  }
+
+  componentDidMount()   // USED TO MAKE API CALLS (because apicall must be rendered after we render the basic UI)
+
+  render(){
+    const{name} = this.props;
+
+    return(
+      <button onClick={()=>{
+        this.setState({
+          count:this.state.count + 1;         // NEVER DIRECTLY UPDATE THE STATE VARIABLES 
+        })
+      }}> click me</button>
+    )
+  }
+
+}
+
+
+COMPONENT LIFECYCLE:
+  Parent constructor
+  Parent render
+  Child constructor
+  Child render 
+  Child component did mount
+  Parent component did mount
+ 
+ ** WHEN THERE ARE MULTIPLE CHILD COMPONENTS INSIDE A PARENT COMPONENT
+    -parent constructor 
+    -parent render
+    -first child constructor 
+    -first child render
+    -second child constructor 
+    -second child render
+
+    -first child componentDidMount
+    -second child componentDidMount
+    -parent componentDidMount
+
+
+TWO PHASES : 1. Render Phase - constructor , render 
+             2. Commit Phase - DOM updation  (in a SINGLE BATCH), componentDidMount
+
+How do i do componentwillunmount in functional component?
+  - useEffect(()=>{
+    fetchdData();
+
+    return ()=>{
+      console.log("useEffect returned");  =============> THIS WILL BE CALLED ONCE YOU EXIT THE CURRENT COMPONET/OR GO TO ANOTHER COMPONENT
+    }
+  },[])
+
+
+LESSON 9: OPTIMIZING OUR APP 
+
+  SINGLE RESPONSIBILITY PRINCIPLE - each component should have only one functio or work to do.
+
+  - CUSTOM HOOKS
+      -they are just normal js utility function created by you
+      -they can be used when you want split the responsiblity of a component
+      -in restaurantmenu - you can fetch the resmenu using a custom Hook
+
+- CHUNKING ,CODE SPLITTING , DYNAMIC BUNDLING , ON DEMAND BUNDLING , LAZY LOADING , DYNAMIC IMPORT - ALL ARE SIMILAR
+
+
+LESSON 10:TAILWIND class
+
+  1ST WAY:- NORMAL CSS 
+  2ND WAY :- STYLED COMPONENTS
+
+
+LESSON 11: DATA IS THE NEW OIL 
+
+  -HIGHER ORDER COMPONENTS:
+    -a function that takes a component and return a component that returns some piece of jsx.
+    -enhances the component and returns the component
+
+
+    const withVegLabel = (RestaurantCard)=>{
+      return(props)=>{
+        return{
+          <div>
+            <label>veg</label>
+            <RestaurantCard {...props}/>
+          </div>
+        }
+      }
+    }
+
+    -IF YOU HAVE MAPPED MULTIPLE COMPONENTS, EACH MAPPED COMPONENT HAVE THEIR OWN STATE .
+    -THEY MANAGE THEIR OWN STATES

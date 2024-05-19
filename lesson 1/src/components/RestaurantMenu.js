@@ -1,27 +1,16 @@
-import { useEffect, useState } from "react";
+
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = ()=>{
+     const {resId} = useParams();
 
-    const[listOfMenu,setListOfMenu] = useState(null);
-
-    const {resId} = useParams();
-    useEffect(()=>{
-        fetchMenu();
-    },[]);
-
+    const listOfMenu  = useRestaurantMenu(resId);
     
-    const fetchMenu = async ()=>{
-        const menu = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.9625741&lng=79.8394783&restaurantId="+resId+"&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER");
-
-        const data = await menu.json();
-
-        console.log(data);
-
-        setListOfMenu(data);
-    }
+    const[showIndex,setShowIndex] = useState(null);
 
     if(listOfMenu === null)return <Shimmer />;
 
@@ -34,21 +23,39 @@ const RestaurantMenu = ()=>{
     if(itemCards === undefined){
         itemCards = listOfMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards;
     }  
-   console.log(itemCards);
+
+    // console.log(listOfMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+
+    const categories = listOfMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=> c.card?.card?.["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+
+    console.log(categories);
     
     return(
 
-        <div className="menu">
-            <h1>{name}</h1>
-            <p>{cuisines.join(", ")}</p>
-            <ul>
-                <li>{avgRating} stars , {"(" + totalRatingsString + ")"}</li>
-            </ul>
-            <ul>
+        <div className="menu text-center">
+            <h1 className=" font-bold text-2xl">{name}</h1>
+            <p className="text-lg">{cuisines.join(", ")}</p>
+
+
+            
+            {
+                categories.map((category,index)=>(
+                    <RestaurantCategory 
+                        key={category?.card?.card?.itemCards[0]?.card?.info?.id} 
+                        data={category?.card?.card}
+                        showItemList={showIndex === index ? true : false}
+                        eventHandle={()=>{
+                            setShowIndex(index);                  
+                        }}
+                    />
+                ))
+            }
+          
+            {/* <ul>
                 {itemCards.map( item => <li key={item.card.info.id}>{item.card.info.name}</li>)}
-            </ul>
+            </ul> */}
         </div>
-    );
+    );  
 };
 
 export default RestaurantMenu;
