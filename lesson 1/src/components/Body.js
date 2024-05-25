@@ -1,9 +1,9 @@
 import RestaurantCard ,{withVegLabel} from "./RestaurantCard";
 import { Link } from "react-router-dom";
-import { useState ,useEffect} from "react";
+import { useState ,useEffect, useContext} from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import UserContext from "../utils/UserContext";
 
 
 const Body = ()=>{
@@ -14,11 +14,14 @@ const Body = ()=>{
 
     const[copyResList , setCopyResList] = useState([]);
 
+    const{setUserName,loggedInUser} = useContext(UserContext);
+    
+
     useEffect(()=>{
       fetchData();
     }, []);
 
-    console.log(restaurantList);
+    // console.log(restaurantList);
 
     const VegRestaurantCard = withVegLabel(RestaurantCard);
     
@@ -29,7 +32,7 @@ const Body = ()=>{
 
       const json = await data.json();
 
-      console.log(json);
+      // console.log(json);
       //optional chaining
       setRestaurantList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setCopyResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -84,7 +87,11 @@ const Body = ()=>{
                         setCopyResList(filteredList);
                     }}>Top Rated</button>
 
+                <label>UserName</label>
+                <input type="text"   onKeyDown={(e)=>{if(e.key === 'Enter')setUserName(e.target.value)}}/>
                 </div>
+
+
             </div>
             <div className='res-container m-4 flex flex-wrap'>
                 {

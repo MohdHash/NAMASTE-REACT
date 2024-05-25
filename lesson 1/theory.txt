@@ -307,3 +307,31 @@ LESSON 11: DATA IS THE NEW OIL
 
     -IF YOU HAVE MAPPED MULTIPLE COMPONENTS, EACH MAPPED COMPONENT HAVE THEIR OWN STATE .
     -THEY MANAGE THEIR OWN STATES
+
+    LIFTING THE STATE UP:
+    1.Remove the state variable from child components 
+    2.Pass hardcoded data to child components 
+    3.Add state to the common parent and pass it down together with the event handler (the function to set the state of parent)
+    
+
+LESSON 12: LETS BUILD OUR STORE
+      -They offer only easy debugging
+      -They are state management libraries and are not part of react.
+
+
+    Redux-toolkit - (RTK):
+      - It maintains a large object that contains the data 
+      - They consists of slices ( logical partitions ) eg. Having a cart functionality where you can add items to it.
+      - When you click on add , it DISPATCHES an ACTION and it will call a REDUCER function that updates the cart slice in the redux store.
+      - When you want READ the data to any component , we have a SELECTOR that will SUBSCRIBE TO THE STORE and automatically updates when the store updates.
+
+STEPS TO FOLLOW:
+  - install @reduxjs/toolkit and react-redux 
+  -Build our store 
+  -Connect the store to our app 
+  -Slice
+  -dispatch(action)
+  -selector
+
+
+  
