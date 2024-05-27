@@ -14,10 +14,10 @@ const RestaurantCategory = (props)=>{
     
     return(
        <div>
-        <div onClick={handleClick} className=" bg-gray-100 mx-auto w-6/12 shadow-lg p-4 my-4 cursor-pointer">
+        <div  className=" bg-gray-100 mx-auto w-6/12 shadow-lg p-4 my-4 cursor-pointer">
             <div className="flex justify-between">
                 <span className=" font-bold text-xl ">{data.title} ({data.itemCards.length})</span>
-                <span>🔽</span>
+                <span onClick={handleClick} >🔽</span>
             </div>
             
             {showItemList && isActive ? <ItemList items={data.itemCards}/> : null}

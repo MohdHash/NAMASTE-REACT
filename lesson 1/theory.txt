@@ -334,4 +334,14 @@ STEPS TO FOLLOW:
   -selector
 
 
-  
+  #Build the store
+  import cartReducer from "./utils/cartSlice";
+  const appStore = configureStore({
+    reducer:{
+      cart:cartReducer
+    }
+  })
+
+
+
+

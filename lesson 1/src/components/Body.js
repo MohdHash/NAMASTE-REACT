@@ -23,11 +23,20 @@ const Body = ()=>{
 
     // console.log(restaurantList);
 
+    const handleEnterSearch = ()=>{
+      const filteredList = restaurantList.filter((res)=>{
+        return res.info.name.toLowerCase().includes(searchText.toLowerCase());
+      })
+
+      setCopyResList(filteredList)
+    }
+
+    //Higher Order Component
     const VegRestaurantCard = withVegLabel(RestaurantCard);
     
     const fetchData = async ()=>{
       const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.9625741&lng=79.8394783&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.9625741&lng=79.8394783&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
 
       const json = await data.json();
@@ -58,7 +67,8 @@ const Body = ()=>{
                       value={searchText} 
                       onChange={ (e)=>{
                       setSearchText(e.target.value);
-                    }} 
+                    }}
+                      onKeyDown={(e)=>{if(e.key === 'Enter')handleEnterSearch()}} 
                     />
 
                     <button 
