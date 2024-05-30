@@ -373,10 +373,15 @@ create babel.config.js
 create .parcelrc
 npx jest --init
 npm install --save-dev jest-environment-jsdom
+install @babel/preset-react to make jsx work in test cases.
+include @babel/preset-react inside my babel config
 
 
 
-__ ( dunder ) => two underscores 
+
+__ ( dunder ) => two underscores
+
+__test__ folder => filename.test.js
 
 
 
