@@ -343,5 +343,40 @@ STEPS TO FOLLOW:
   })
 
 
+  LESSON 13: TESTING 
+
+  DEVELOPER TESTING:
+    1.Unit testing 
+    2.Integration Testing 
+    3.End-to-End Testing
+
+  Unit Testing:
+      -Testing on single component
+  Integration Testing:
+      - Testing multiple the components that are related in any feature.
+  End-to-End Testing: (mostly for testers )
+   - Testing every feature or flow beginning from landing on a page and leaving
+
+#setting up Testing 
+1.Install React Testing Library 
+2.Install jest 
+3.Instal Babel dependencies
+4.Configure Babel
+5.Configure Parcel config file to disable default babel transpilation
+6.Jest configuration
+7.install jsdom library
+
+npm i -D @testing-library/react
+npm i -D jest
+npm install --save-dev babel-jest @babel/core @babel/preset-env
+create babel.config.js
+create .parcelrc
+npx jest --init
+npm install --save-dev jest-environment-jsdom
+
+
+
+__ ( dunder ) => two underscores 
+
 
 

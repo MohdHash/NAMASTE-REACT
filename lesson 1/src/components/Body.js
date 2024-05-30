@@ -36,7 +36,7 @@ const Body = ()=>{
     
     const fetchData = async ()=>{
       const data = await fetch(
-        "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.9625741&lng=79.8394783&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.9625741&lng=79.8394783&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
 
       const json = await data.json();
