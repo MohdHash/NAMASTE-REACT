@@ -11,7 +11,7 @@ const useRestaurantMenu = (resId)=>{
 
     const fetchData =  async ()=>{
        
-        const menu = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.9625741&lng=79.8394783&restaurantId="+resId+"&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER");
+        const menu = await fetch("https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.9625741&lng=79.8394783&restaurantId="+resId+"&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER");
     
         const data = await menu.json();
     

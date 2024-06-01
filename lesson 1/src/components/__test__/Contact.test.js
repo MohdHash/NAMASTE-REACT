@@ -7,9 +7,9 @@ describe("Contact page test cases",()=>{
 
         render(<Contact />);  // render the component in jsdom
     
-       const heading = screen.getAllByRole("heading");
+       const heading = screen.getByRole("heading");
     
-       expect(heading.length).toBe(2);
+       expect(heading).toBeInTheDocument();
     
     
     })

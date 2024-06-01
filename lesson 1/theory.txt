@@ -375,8 +375,7 @@ npx jest --init
 npm install --save-dev jest-environment-jsdom
 install @babel/preset-react to make jsx work in test cases.
 include @babel/preset-react inside my babel config
-npm i -D @testing-library/jest-dom
-import in the test file
+
 
 
 
