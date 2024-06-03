@@ -43,8 +43,8 @@ const RestaurantMenu = ()=>{
                     <RestaurantCategory 
                         key={category?.card?.card?.itemCards[0]?.card?.info?.id} 
                         data={category?.card?.card}
-                        showItemList={showIndex === index ? true : false}
-                        eventHandle={()=>{
+                        showItemList={showIndex === index ? true : false} //passing state as props
+                        eventHandle={()=>{           //passing the setstate as event handler
                             setShowIndex(index);                  
                         }}
                     />

@@ -13,6 +13,9 @@ import UserContext from './utils/UserContext';
 import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
 import Cart from './components/Cart';
+// import ApiContext from './utils/ApiContext';
+import ApiProvider from './utils/ApiContext';
+import SelectedApiProvider from './utils/SelectedApiContext';
 
 const Grocery = lazy(()=> import("./components/Grocery"));
 
@@ -20,8 +23,15 @@ const Grocery = lazy(()=> import("./components/Grocery"));
 const AppLayout = ()=>{
 
     const[userName , setUserName] = useState("");
+    // const[location,setLocation] = useState("");
+
+    // const handleSelectLocation = (api)=>{
+    //     setLocation(api);
+    // }
+
 
     useEffect(()=>{
+
         //API CALL
         const data={
             info:"Mohamed Hashim",
@@ -32,12 +42,16 @@ const AppLayout = ()=>{
 
     return (
         <Provider store={appStore}>
-             <UserContext.Provider value={{loggedInUser:userName , setUserName}}>
-            <div className="body">
-                <Header />
-                <Outlet />
-            </div>
-        </UserContext.Provider>
+            <ApiProvider>
+                <SelectedApiProvider>
+                    <UserContext.Provider value={{loggedInUser:userName , setUserName}}>
+                    <div className="body">
+                        <Header />
+                        <Outlet />
+                    </div>
+                    </UserContext.Provider>
+                </SelectedApiProvider>
+            </ApiProvider>    
         </Provider>
        
        

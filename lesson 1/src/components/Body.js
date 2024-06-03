@@ -4,24 +4,24 @@ import { useState ,useEffect, useContext} from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import useRestaurantList from "../utils/useRestaurantList";
+import { SelectedApiContext } from "../utils/SelectedApiContext";
 
 
 const Body = ()=>{
+    const {selectedApi} = useContext(SelectedApiContext)
+    
     //  Local State variable 
-    const [restaurantList , setRestaurantList] = useState([]);
+    const[copyResList , setCopyResList] = useState([]);
+    const restaurantList = useRestaurantList(setCopyResList,selectedApi);
 
     const[searchText,setSearchText] = useState("")
-
-    const[copyResList , setCopyResList] = useState([]);
-
     const{setUserName,loggedInUser} = useContext(UserContext);
     
 
-    useEffect(()=>{
-      fetchData();
-    }, []);
+    
 
-    // console.log(restaurantList);
+   
 
     const handleEnterSearch = ()=>{
       const filteredList = restaurantList.filter((res)=>{
@@ -31,21 +31,18 @@ const Body = ()=>{
       setCopyResList(filteredList)
     }
 
+    const handleVegClick = ()=>{
+      const filterList = restaurantList.filter((res)=>{
+        return res.info.veg == true;
+      })
+
+      setCopyResList(filterList);
+    }
+
     //Higher Order Component
     const VegRestaurantCard = withVegLabel(RestaurantCard);
     
-    const fetchData = async ()=>{
-      const data = await fetch(
-        "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.9625741&lng=79.8394783&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
-
-      const json = await data.json();
-
-      // console.log(json);
-      //optional chaining
-      setRestaurantList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setCopyResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    };
+   
 
     const onlineStatus = useOnlineStatus();
     if(onlineStatus === false){
@@ -55,7 +52,8 @@ const Body = ()=>{
     }
 
     //conditional rendering
-    return copyResList.length === 0 ? <Shimmer /> : (
+    // copyResList.length === 0 ? <Shimmer /> :
+    return  (
         <div className='body-container'>
             <div className='body-head m-4'>
                 <div className="filter flex items-center">
@@ -64,6 +62,7 @@ const Body = ()=>{
                     <input 
                       type="text" 
                       className="search-box border border-black px-[2px] m-4" 
+                      data-testid="inputBox"
                       value={searchText} 
                       onChange={ (e)=>{
                       setSearchText(e.target.value);
@@ -96,6 +95,12 @@ const Body = ()=>{
                         );
                         setCopyResList(filteredList);
                     }}>Top Rated</button>
+
+                    <button className="filter-btn ml-10 px-3 py-1 rounded-md bg-gray-400 bg-opacity-30"
+                      onClick={handleVegClick}
+                    >
+                      Veg Restaurant
+                    </button>
 
                 <label>UserName</label>
                 <input type="text"   onKeyDown={(e)=>{if(e.key === 'Enter')setUserName(e.target.value)}}/>

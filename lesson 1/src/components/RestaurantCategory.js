@@ -11,7 +11,7 @@ const RestaurantCategory = (props)=>{
         setisActive(!isActive);
     }
     // console.log(data);
-    
+    //lifting the stae up
     return(
        <div>
         <div  className=" bg-gray-100 mx-auto w-6/12 shadow-lg p-4 my-4 cursor-pointer">
