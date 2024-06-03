@@ -383,5 +383,9 @@ __ ( dunder ) => two underscores
 
 __test__ folder => filename.test.js
 
+components that undergo state updates must be wrapped in act function
+ACT funtion: import from react-dom/test-utils
+
+
 
 
